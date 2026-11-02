@@ -10,7 +10,7 @@ window.PORTFOLIO_DATA = {
     ownerName: "MAICON MOURA",
     ownerRole: "DESIGNER & VISUAL STORYTELLER",
     // Papel de parede principal do desktop (troque o caminho para usar outra foto de fundo)
-    wallpaper: "assets/images/wallpaper-maicon-studio.jpg",
+    wallpaper: "assets/images/wallpaper-maicon-alta-resolucao.png",
     // Ícone no botão inferior "Vamos conversar"
     dockAvatar: "assets/images/dock-logo.svg",
     dockCtaLabel: "Vamos conversar",
