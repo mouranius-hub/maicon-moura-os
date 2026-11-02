@@ -18,8 +18,8 @@ window.PORTFOLIO_DATA = {
       "https://docs.google.com/forms/d/e/1FAIpQLSeRXHariQmDCnnT6ovmqt3Hp8KYEwXBbPHKKiZr-LWXHnJylQ/viewform",
     sidebarConnectHeading: "VAMOS CONVERSAR",
     email: "maiconsmoura.design@gmail.com",
-    phoneDisplay: "+55 (19) 98210-6254",
-    phoneHref: "tel:+5519982106254",
+    phoneDisplay: "+55 (19) 99786-6065",
+    phoneHref: "tel:+5519997866065",
     folders: [
       {
         id: "about",
