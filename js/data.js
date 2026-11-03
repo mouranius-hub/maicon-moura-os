@@ -19,7 +19,7 @@ window.PORTFOLIO_DATA = {
     sidebarConnectHeading: "VAMOS CONVERSAR",
     email: "maiconsmoura.design@gmail.com",
     phoneDisplay: "+55 (19) 99786-6065",
-    phoneHref: "tel:+5519997866065",
+    phoneHref: "https://wa.me/5519997866065",
     folders: [
       {
         id: "about",
