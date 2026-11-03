@@ -120,7 +120,7 @@ window.PORTFOLIO_DATA = {
       client: "Tuti Café, Brasília",
       date: "2026",
       icon: "assets/images/tuti-cafe-icon.jpg",
-      cover: "assets/images/projects/tuti-cafe/img-04.jpg",
+      cover: "assets/images/projects/tuti-cafe/cover.jpg",
       overview:
         "Identidade visual do Tuti Café, bistrô 100% sem glúten e sem lactose em Brasília. Uma marca com cara de feita à mão: logotipo escrito à mão e ilustrações de traço livre, usadas em grande escala nas peças do café. O logotipo foi escrito à mão e redesenhado em vetor, ponto a ponto, para manter o movimento do traço original. A paleta quente, de verde-sálvia e terracota, acompanha seis ilustrações que viram estampa, mural e embalagem.",
       credits: [
