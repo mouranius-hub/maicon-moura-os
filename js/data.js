@@ -118,13 +118,19 @@ window.PORTFOLIO_DATA = {
       desktopSlot: 0,
       category: "Identidade Visual",
       client: "Tuti Café, Brasília",
-      date: "2026",
+      date: "2024",
       icon: "assets/images/tuti-cafe-icon.jpg",
       cover: "assets/images/projects/tuti-cafe/img-04.jpg",
       overview:
-        "Identidade visual do Tuti Café, bistrô 100% sem glúten e sem lactose em Brasília. Uma marca com cara de feita à mão: logotipo escrito à mão e ilustrações de traço livre, usadas em grande escala nas peças do café. O logotipo foi escrito à mão e redesenhado em vetor, ponto a ponto, para manter o movimento do traço original. A paleta quente, de verde-sálvia e terracota, acompanha seis ilustrações que viram estampa, mural e embalagem.",
+        "O Tuti Café é um bistrô em Brasília com refeições leves, rápidas e acolhedoras para pessoas com restrições alimentares. A cozinha é 100% sem glúten e sem lactose, sem risco de contaminação cruzada, e trabalha com ingredientes naturais e saudáveis que não abrem mão do sabor. A marca também assume práticas sustentáveis, materiais recicláveis e menos plástico, e recebe todas as pessoas, independentemente de crença, etnia, identidade ou orientação. Sua frase: \"Sabor que acolhe, saúde que transforma.\"\n\nO projeto seguiu três fases. A pesquisa começou pelos concorrentes e referências semelhantes, suas redes sociais, um mapa de personalidade do mercado e uma síntese visual das cores e tipografias usadas na categoria. O público foi definido como B2C, de 17 a 85 anos, homens, mulheres e outros, junto com seus hábitos diários. Dali saíram os pilares da marca: criativa, delicada e inovadora.\n\nA estratégia partiu de um mapa mental em torno de quatro palavras: sem glúten, vida leve, liberdade e acolhimento. Dele vieram os atributos (inclusiva, acolhedora, sustentável e saborosa), os arquétipos (o Explorador, o Cuidador e o Amigo) e um tom de voz caloroso, inclusivo e autêntico. Propósito: servir refeições saborosas independentemente de restrições alimentares ou estilo de vida. Missão: alimentar bem-estar, saúde e alegria por meio de uma gastronomia inovadora e inclusiva. Visão: ser referência em alimentação saudável e sem glúten em Brasília.\n\nA criação começou por uma pergunta: o que a marca precisa ser? A resposta foi delicada e moderna, criativa e inovadora, leve e forte.",
+      challenge:
+        "O desafio era dizer \"sem glúten\" sem depender do símbolo da categoria, que não carregava a mensagem que a marca queria passar.\n\nA identidade precisava transmitir cuidado e segurança sem perder o calor de uma cozinha de casa, e continuar moderna, delicada e criativa em cada aplicação.",
+      solution:
+        "Como os produtos são naturais e o foco é o acolhimento, a identidade foi construída em torno do feito à mão. Uma tipografia manuscrita funciona como assinatura, ajustada em pontos específicos para manter a fluidez e uma leitura clara.\n\nNo lugar do símbolo de sem glúten, um selo redondo feito com o mesmo lettering virou uma marca curta e fácil de reconhecer. A primeira ideia foi um selo com as iniciais TGF, uma sigla que poderia ressoar com públicos mais jovens e com as redes sociais; com o nome final, o selo passou a levar a assinatura \"tuti\".\n\nA paleta foi definida no briefing e refinada em torno de natureza, fazenda, harmonia e acolhimento: verde-sálvia, terracota, marrom, areia e creme. A Sora cuida de cardápios, títulos, papelaria e uso digital, com formas arredondadas e finais que lembram uma máquina de escrever moderna. Ilustrações de traço livre levam a ideia do feito à mão para a parede, as embalagens e o papel de embrulho, junto a frases como \"Feito com carinho, servido com autenticidade.\"",
       credits: [
         { role: "Design", name: "Maicon Moura" },
+        { role: "Design", name: "Vinicius Souza" },
+        { role: "Serviço", name: "Identidade Visual e Ilustração" },
         { role: "Cliente", name: "Tuti Café, Brasília" },
       ],
       gallery: [

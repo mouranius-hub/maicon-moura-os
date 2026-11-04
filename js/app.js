@@ -410,6 +410,10 @@
     });
   }
 
+  function paragraphs(text) {
+    return String(text).split(/\n\n+/).map((t) => `<p>${escapeHtml(t)}</p>`).join("");
+  }
+
   function renderProjectDetail(proj) {
     const gallery = proj.gallery && proj.gallery.length ? proj.gallery : [proj.cover];
     const hasOverview = Boolean(proj.overview && proj.overview.trim());
@@ -445,7 +449,7 @@
               hasOverview
                 ? `<div class="project-block">
                     <h3>Visão Geral</h3>
-                    <p>${escapeHtml(proj.overview)}</p>
+                    ${paragraphs(proj.overview)}
                   </div>`
                 : ""
             }
@@ -454,7 +458,7 @@
               hasChallenge
                 ? `<div class="project-block">
                     <h3>Desafio</h3>
-                    <p>${escapeHtml(proj.challenge)}</p>
+                    ${paragraphs(proj.challenge)}
                   </div>`
                 : ""
             }
@@ -463,7 +467,7 @@
               hasSolution
                 ? `<div class="project-block">
                     <h3>Solução</h3>
-                    <p>${escapeHtml(proj.solution)}</p>
+                    ${paragraphs(proj.solution)}
                   </div>`
                 : ""
             }
