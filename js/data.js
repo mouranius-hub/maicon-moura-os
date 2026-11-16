@@ -263,7 +263,7 @@ window.PORTFOLIO_DATA = {
     {
       slug: "letticia-fotografia-brand-identity",
       title: "Letticia Massari",
-      desktopSlot: 4,
+      desktopSlot: null,
       category: "Identidade Visual",
       client: "Letticia Massari",
       date: "2022",
@@ -293,9 +293,10 @@ window.PORTFOLIO_DATA = {
     {
       slug: "letticia-foto",
       title: "Letticia Foto",
-      desktopSlot: null,
+      desktopSlot: 4,
       category: "Identidade Visual",
       client: "Letticia Foto",
+      icon: "assets/images/projects/letticia-foto/icon.jpg",
       date: "2026",
       cover: "assets/images/projects/letticia-foto/img-01.jpg",
       overview:
