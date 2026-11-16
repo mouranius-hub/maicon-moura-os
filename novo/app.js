@@ -57,7 +57,7 @@
       cards.forEach((c, i) => {
         const d = i - p; let yc, sc, op, bl;
         if(d >= 0){ sc = Math.pow(R, d); yc = y0 - H * .24 * (1 - Math.pow(R, d)) / (1 - R); op = d > 7 ? 0 : 1; bl = Math.min(d * 1.1, 8); }
-        else { const k = -d; sc = 1 + k * .22; yc = y0 + k * H * .75; op = Math.max(0, 1 - k * 1.25); bl = k * 6; }
+        else { const k = -d; sc = 1 + k * .22; yc = y0 + k * H * .75; op = Math.max(0, 1 - k * 3); bl = k * 8; }
         c.style.display = op <= 0.01 ? "none" : "block";
         c.style.opacity = op; c.style.zIndex = 1000 - Math.round(d * 10);
         c.style.pointerEvents = (d > -.4 && d < .6) ? "auto" : "none";
