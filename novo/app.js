@@ -23,14 +23,14 @@
       <div class="im"><img src="${img(coverOf(p))}" alt="${esc(p.title)}" loading="lazy"></div>
       <h3>${esc(p.title)}</h3><p>${esc(p.category)} · ${esc(p.date)}</p></a>`;
   }
-  let mode = "grid"; try { mode = localStorage.getItem("mm-view") || "grid"; } catch(e){}
+  let mode = "list"; try { mode = localStorage.getItem("mm-view2") || "list"; } catch(e){}
   function home(){
     const all = P;
     const body = mode === "list"
       ? `<ul class="list">${all.map((p)=>`<li><a href="#/projeto/${p.slug}" data-peek="${esc(img(coverOf(p)))}"><b>${esc(p.title)}</b><span>${esc(p.category)} · ${esc(p.date)}</span></a></li>`).join("")}</ul>`
       : `<div class="grid">${all.map(card).join("")}</div>`;
     app.innerHTML = hero + `<section class="wrap" id="trabalhos"><h2 class="sec-title">Trabalhos selecionados</h2>
-      <div class="view" role="group" aria-label="Modo de exibição"><button data-view="grid" class="${mode==="grid"?"on":""}">Grade</button><button data-view="list" class="${mode==="list"?"on":""}">Lista</button></div>${body}</section>`;
+      <div class="view" role="group" aria-label="Modo de exibição"><button data-view="list" class="${mode==="list"?"on":""}">Lista</button><button data-view="grid" class="${mode==="grid"?"on":""}">Grade</button></div>${body}</section>`;
   }
   function about(){
     const a = D.about;
@@ -82,7 +82,7 @@
   }
   $("#foot").innerHTML = `<span>© ${new Date().getFullYear()} Maicon Moura</span><span>${esc(S.ownerRole)}</span>`;
   document.addEventListener("click", (e) => { const a = e.target.closest("[data-scroll]"); if(a){ e.preventDefault(); document.getElementById(a.dataset.scroll).scrollIntoView({behavior:"smooth"}); } });
-  document.addEventListener("click", (e) => { const b = e.target.closest("[data-view]"); if(b){ mode = b.dataset.view; try { localStorage.setItem("mm-view", mode); } catch(x){} const y = window.scrollY; home(); reveal(); window.scrollTo(0, y); } });
+  document.addEventListener("click", (e) => { const b = e.target.closest("[data-view]"); if(b){ mode = b.dataset.view; try { localStorage.setItem("mm-view2", mode); } catch(x){} const y = window.scrollY; home(); reveal(); window.scrollTo(0, y); } });
   // trilha de fotos: ao passar o mouse sobre o título da home, as capas dos projetos surgem no cursor
   const fine = window.matchMedia("(hover:hover) and (pointer:fine)").matches && !window.matchMedia("(prefers-reduced-motion:reduce)").matches;
   let lx = -999, ly = -999, ti = 0;
