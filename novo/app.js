@@ -80,41 +80,16 @@
     reveal();
     if(r !== "" ) window.scrollTo(0, 0);
   }
-  const links = [["Behance", "https://www.behance.net/maiconsmoura"], ["LinkedIn", "https://www.linkedin.com/in/maiconsmoura/"], ["WhatsApp", S.phoneHref], ["E-mail", "mailto:" + S.email]];
+  const soc = [["Behance", "https://www.behance.net/maiconsmoura"], ["LinkedIn", "https://www.linkedin.com/in/maiconsmoura/"], ["WhatsApp", S.phoneHref], ["E-mail", "mailto:" + S.email], ["Pedir orçamento", S.dockCtaUrl]];
   $("#foot").innerHTML = `<div class="f-in">
-      <a class="f-cta" href="${esc(S.dockCtaUrl)}" target="_blank" rel="noopener"><small>Tem um projeto em mente?</small><b>Vamos conversar ↗</b></a>
+      <div class="f-big" id="fbig" aria-hidden="true">Maicon Moura</div>
       <div class="f-cols">
-        <div><span>Menu</span><a href="#/">Trabalhos</a><a href="#/sobre">Sobre</a><a href="#/contato">Contato</a></div>
-        <div><span>Contato</span>${links.map(([n, h]) => `<a href="${esc(h)}" target="_blank" rel="noopener">${n} ↗</a>`).join("")}</div>
-        <div><span>Maicon Moura</span><p>${esc(S.ownerRole)}</p><p>${esc(S.email)}</p></div>
+        <div>${soc.map(([n, h]) => `<a href="${esc(h)}" target="_blank" rel="noopener">${n}</a>`).join("")}</div>
+        <div><a href="#/">Trabalhos</a><a href="#/sobre">Sobre</a><a href="#/contato">Contato</a></div>
       </div>
-      <div class="f-base"><span>© ${new Date().getFullYear()} Maicon Moura</span><span>Todos os direitos reservados</span></div></div>`;
-  document.addEventListener("click", (e) => { const a = e.target.closest("[data-scroll]"); if(a){ e.preventDefault(); document.getElementById(a.dataset.scroll).scrollIntoView({behavior:"smooth"}); } });
-  document.addEventListener("click", (e) => { const b = e.target.closest("[data-view]"); if(b){ mode = b.dataset.view; try { localStorage.setItem("mm-view2", mode); } catch(x){} const y = window.scrollY; home(); reveal(); window.scrollTo(0, y); } });
-  // trilha de fotos: ao passar o mouse sobre o título da home, as capas dos projetos surgem no cursor
-  const fine = window.matchMedia("(hover:hover) and (pointer:fine)").matches && !window.matchMedia("(prefers-reduced-motion:reduce)").matches;
-  let lx = -999, ly = -999, ti = 0;
-  document.addEventListener("mousemove", (e) => {
-    if(!fine) return;
-    const hero = e.target.closest && e.target.closest("#hero"); const trail = $("#trail");
-    if(!hero || !trail) return;
-    if(Math.hypot(e.clientX - lx, e.clientY - ly) < 90) return;
-    lx = e.clientX; ly = e.clientY;
-    const r = trail.getBoundingClientRect(); const p = P[ti++ % P.length];
-    const im = document.createElement("img"); im.src = img(coverOf(p)); im.alt = ""; im.decoding = "async";
-    im.style.left = (e.clientX - r.left) + "px"; im.style.top = (e.clientY - r.top) + "px"; im.style.setProperty("--r", (Math.random() * 14 - 7).toFixed(1) + "deg");
-    trail.appendChild(im); setTimeout(() => im.remove(), 1500);
-    while(trail.children.length > 14) trail.firstChild.remove();
-  });
-  const peek = document.createElement("div"); peek.className = "peek"; peek.innerHTML = "<img alt=''>"; document.body.appendChild(peek);
-  const pimg = peek.firstChild; let px = 0, py = 0, tx = 0, ty = 0, raf = 0;
-  function loop(){ px += (tx - px) * .16; py += (ty - py) * .16; peek.style.left = px + "px"; peek.style.top = py + "px"; raf = peek.classList.contains("on") ? requestAnimationFrame(loop) : 0; }
-  document.addEventListener("mousemove", (e) => { tx = e.clientX + 40; ty = e.clientY; });
-  document.addEventListener("mouseover", (e) => {
-    const a = e.target.closest("[data-peek]");
-    if(a){ if(pimg.getAttribute("src") !== a.dataset.peek) pimg.src = a.dataset.peek; if(!peek.classList.contains("on")){ px = tx; py = ty; peek.classList.add("on"); if(!raf) raf = requestAnimationFrame(loop); } }
-    else peek.classList.remove("on");
-  });
+      <div class="f-base"><span>Maicon Moura ${new Date().getFullYear()}</span><span>Todos os direitos reservados©</span></div></div>`;
+  function fit(){ const el = $("#fbig"); if(!el) return; el.style.fontSize = "100px"; const box = el.parentElement.clientWidth - parseFloat(getComputedStyle(el.parentElement).paddingLeft) * 2; el.style.fontSize = (100 * box / el.scrollWidth) + "px"; }
+  fit(); window.addEventListener("resize", fit); if(document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
   window.addEventListener("hashchange", () => peek.classList.remove("on"));
   window.addEventListener("hashchange", route);
   route();
