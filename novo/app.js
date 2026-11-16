@@ -9,7 +9,7 @@
   const app = $("#app");
 
   const hero = `
-    <section class="hero fade">
+    <section class="hero fade" id="hero"><div class="trail" id="trail"></div>
       <small>${esc(S.ownerName)}</small>
       <h1>${D.about.headingLines.map(esc).join("<br>")}</h1>
       <p>Crio marcas com personalidade, estratégia e histórias para contar.</p>
@@ -83,6 +83,21 @@
   $("#foot").innerHTML = `<span>© ${new Date().getFullYear()} Maicon Moura</span><span>${esc(S.ownerRole)}</span>`;
   document.addEventListener("click", (e) => { const a = e.target.closest("[data-scroll]"); if(a){ e.preventDefault(); document.getElementById(a.dataset.scroll).scrollIntoView({behavior:"smooth"}); } });
   document.addEventListener("click", (e) => { const b = e.target.closest("[data-view]"); if(b){ mode = b.dataset.view; try { localStorage.setItem("mm-view", mode); } catch(x){} const y = window.scrollY; home(); reveal(); window.scrollTo(0, y); } });
+  // trilha de fotos: ao passar o mouse sobre o título da home, as capas dos projetos surgem no cursor
+  const fine = window.matchMedia("(hover:hover) and (pointer:fine)").matches && !window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  let lx = -999, ly = -999, ti = 0;
+  document.addEventListener("mousemove", (e) => {
+    if(!fine) return;
+    const hero = e.target.closest && e.target.closest("#hero"); const trail = $("#trail");
+    if(!hero || !trail) return;
+    if(Math.hypot(e.clientX - lx, e.clientY - ly) < 90) return;
+    lx = e.clientX; ly = e.clientY;
+    const r = trail.getBoundingClientRect(); const p = P[ti++ % P.length];
+    const im = document.createElement("img"); im.src = img(coverOf(p)); im.alt = ""; im.decoding = "async";
+    im.style.left = (e.clientX - r.left) + "px"; im.style.top = (e.clientY - r.top) + "px"; im.style.setProperty("--r", (Math.random() * 14 - 7).toFixed(1) + "deg");
+    trail.appendChild(im); setTimeout(() => im.remove(), 1500);
+    while(trail.children.length > 14) trail.firstChild.remove();
+  });
   const peek = document.createElement("div"); peek.className = "peek"; peek.innerHTML = "<img alt=''>"; document.body.appendChild(peek);
   const pimg = peek.firstChild; let px = 0, py = 0, tx = 0, ty = 0, raf = 0;
   function loop(){ px += (tx - px) * .16; py += (ty - py) * .16; peek.style.left = px + "px"; peek.style.top = py + "px"; raf = peek.classList.contains("on") ? requestAnimationFrame(loop) : 0; }
