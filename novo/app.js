@@ -12,7 +12,6 @@
 
   const hero = `
     <section class="hero fade" id="hero"><div class="trail" id="trail"></div>
-      <small>${esc(S.ownerName)}</small>
       <h1>${D.about.headingLines.map(esc).join("<br>")}</h1>
       <p>Crio marcas com personalidade, estratégia e histórias para contar.</p>
       <a class="cue" href="#/" data-scroll="trabalhos">Trabalhos selecionados ↓</a>
