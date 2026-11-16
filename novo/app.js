@@ -1,5 +1,7 @@
 (function(){
-  const D = window.PORTFOLIO_DATA, S = D.siteConfig, P = D.projects;
+  const D = window.PORTFOLIO_DATA, S = D.siteConfig;
+  // do mais novo para o mais antigo (empate mantém a ordem do data.js)
+  const P = D.projects.map((p, i) => [p, i]).sort((a, b) => (parseInt(b[0].date, 10) || 0) - (parseInt(a[0].date, 10) || 0) || a[1] - b[1]).map((x) => x[0]);
   const A = "../";
   const $ = (s) => document.querySelector(s);
   const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -23,9 +25,7 @@
   }
   let mode = "grid"; try { mode = localStorage.getItem("mm-view") || "grid"; } catch(e){}
   function home(){
-    // destaques (os 12 da área de trabalho) primeiro, depois o resto
-    const feat = P.filter((p) => p.desktopSlot !== null && p.desktopSlot !== undefined).sort((a,b)=>a.desktopSlot-b.desktopSlot);
-    const all = feat.concat(P.filter((p) => !feat.includes(p)));
+    const all = P;
     const body = mode === "list"
       ? `<ul class="list">${all.map((p)=>`<li><a href="#/projeto/${p.slug}" data-peek="${esc(img(coverOf(p)))}"><b>${esc(p.title)}</b><span>${esc(p.category)} · ${esc(p.date)}</span></a></li>`).join("")}</ul>`
       : `<div class="grid">${all.map(card).join("")}</div>`;
