@@ -52,6 +52,11 @@
     app.innerHTML = `<section class="wrap contact fade"><h1 class="sec-title" style="margin-top:0">Vamos conversar</h1>
       <ul class="links">${L.map(([k,v,h])=>`<li><a href="${esc(h)}" ${h.startsWith("http")?'target="_blank" rel="noopener"':""}><span>${esc(v)}</span><i>↗</i></a></li>`).join("")}</ul></section>`;
   }
+  // GIFs viram vídeo mp4 (muito mais leve); o resto continua como imagem com carregamento sob demanda
+  function media(src, alt, k){
+    if(/\.gif$/i.test(src)) return `<video src="${img(src.replace(/\.gif$/i, ".mp4"))}" autoplay loop muted playsinline preload="metadata" aria-label="${esc(alt)}"></video>`;
+    return `<img src="${img(src)}" alt="${esc(alt)}" ${k > 1 ? 'loading="lazy"' : 'fetchpriority="high"'} decoding="async">`;
+  }
   function project(slug){
     const i = P.findIndex((p) => p.slug === slug); const p = P[i];
     if(!p){ location.hash = "#/"; return; }
@@ -61,7 +66,7 @@
       .filter((b)=>b[1]).map(([h,t])=>`<div class="txt"><h2>${h}</h2><div>${paras(t)}</div></div>`).join("");
     app.innerHTML = `<article class="wrap fade"><div class="proj"><h1>${esc(p.title)}</h1>
       <div class="meta"><div><span>Categoria</span><b>${esc(p.category)}</b></div><div><span>Ano</span><b>${esc(p.date)}</b></div>${cr}</div>${blocks}</div>
-      <div class="gal">${(p.gallery||[]).map((g)=>`<img src="${img(g)}" alt="${esc(p.title)}" loading="lazy">`).join("")}</div>
+      <div class="gal">${(p.gallery||[]).map((g, k)=>media(g, p.title, k)).join("")}</div>
       <a class="next" href="#/projeto/${nx.slug}"><small>Próximo projeto</small><b>${esc(nx.title)} →</b></a></article>`;
   }
 

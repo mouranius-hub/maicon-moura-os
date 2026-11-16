@@ -48,7 +48,7 @@ img{display:block;max-width:100%}
 .txt h2{font-size:13px;font-weight:500;color:var(--mute);padding-top:6px}
 .txt p{font-size:clamp(16px,1.5vw,20px);margin-bottom:1em;max-width:760px}
 .gal{display:flex;flex-direction:column;gap:16px;padding:40px 0 64px}
-.gal img{width:100%;height:auto;border-radius:4px;background:var(--soft)}
+.gal img,.gal video{width:100%;height:auto;border-radius:4px;background:var(--soft)}
 .next{display:block;border-top:1px solid var(--line);padding:56px 0 96px}
 .next small{color:var(--mute);font-size:14px}.next b{display:block;font-weight:600;font-size:clamp(32px,7vw,96px);letter-spacing:-.04em;line-height:1}
 .hero h1,.hero p,.hero small{position:relative;z-index:1}
