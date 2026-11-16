@@ -17,15 +17,20 @@
     </section>`;
 
   function card(p){
-    return `<a class="card" href="#/projeto/${p.slug}">
+    return `<a class="card rv" href="#/projeto/${p.slug}">
       <div class="im"><img src="${img(coverOf(p))}" alt="${esc(p.title)}" loading="lazy"></div>
       <h3>${esc(p.title)}</h3><p>${esc(p.category)} · ${esc(p.date)}</p></a>`;
   }
+  let mode = "grid"; try { mode = localStorage.getItem("mm-view") || "grid"; } catch(e){}
   function home(){
-    // novos primeiro: quem tem desktopSlot (os destaques) vem antes, depois o resto
+    // destaques (os 12 da área de trabalho) primeiro, depois o resto
     const feat = P.filter((p) => p.desktopSlot !== null && p.desktopSlot !== undefined).sort((a,b)=>a.desktopSlot-b.desktopSlot);
-    const rest = P.filter((p) => !feat.includes(p));
-    app.innerHTML = hero + `<section class="wrap" id="trabalhos"><h2 class="sec-title">Trabalhos selecionados</h2><div class="grid">${feat.concat(rest).map(card).join("")}</div></section>`;
+    const all = feat.concat(P.filter((p) => !feat.includes(p)));
+    const body = mode === "list"
+      ? `<ul class="list">${all.map((p)=>`<li><a href="#/projeto/${p.slug}" data-peek="${esc(img(coverOf(p)))}"><b>${esc(p.title)}</b><span>${esc(p.category)} · ${esc(p.date)}</span></a></li>`).join("")}</ul>`
+      : `<div class="grid">${all.map(card).join("")}</div>`;
+    app.innerHTML = hero + `<section class="wrap" id="trabalhos"><h2 class="sec-title">Trabalhos selecionados</h2>
+      <div class="view" role="group" aria-label="Modo de exibição"><button data-view="grid" class="${mode==="grid"?"on":""}">Grade</button><button data-view="list" class="${mode==="list"?"on":""}">Lista</button></div>${body}</section>`;
   }
   function about(){
     const a = D.about;
@@ -61,6 +66,9 @@
       <a class="next" href="#/projeto/${nx.slug}"><small>Próximo projeto</small><b>${esc(nx.title)} →</b></a></article>`;
   }
 
+  const io = "IntersectionObserver" in window ? new IntersectionObserver((es) => es.forEach((e) => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" }) : null;
+  function reveal(){ document.querySelectorAll(".rv").forEach((el) => io ? io.observe(el) : el.classList.add("in")); }
+
   function route(){
     const h = location.hash.replace(/^#\/?/, "");
     const [r, arg] = h.split("/");
@@ -69,10 +77,22 @@
     else if(r === "contato"){ contact(); $('[data-nav=contact]').classList.add("on"); document.title = "Contato — " + S.ownerName; }
     else if(r === "projeto"){ project(arg); const p = P.find((x)=>x.slug===arg); if(p) document.title = p.title + " — Maicon Moura"; $('[data-nav=work]').classList.add("on"); }
     else { home(); $('[data-nav=work]').classList.add("on"); document.title = S.title; }
+    reveal();
     if(r !== "" ) window.scrollTo(0, 0);
   }
   $("#foot").innerHTML = `<span>© ${new Date().getFullYear()} Maicon Moura</span><span>${esc(S.ownerRole)}</span>`;
   document.addEventListener("click", (e) => { const a = e.target.closest("[data-scroll]"); if(a){ e.preventDefault(); document.getElementById(a.dataset.scroll).scrollIntoView({behavior:"smooth"}); } });
+  document.addEventListener("click", (e) => { const b = e.target.closest("[data-view]"); if(b){ mode = b.dataset.view; try { localStorage.setItem("mm-view", mode); } catch(x){} const y = window.scrollY; home(); reveal(); window.scrollTo(0, y); } });
+  const peek = document.createElement("div"); peek.className = "peek"; peek.innerHTML = "<img alt=''>"; document.body.appendChild(peek);
+  const pimg = peek.firstChild; let px = 0, py = 0, tx = 0, ty = 0, raf = 0;
+  function loop(){ px += (tx - px) * .16; py += (ty - py) * .16; peek.style.left = px + "px"; peek.style.top = py + "px"; raf = peek.classList.contains("on") ? requestAnimationFrame(loop) : 0; }
+  document.addEventListener("mousemove", (e) => { tx = e.clientX + 40; ty = e.clientY; });
+  document.addEventListener("mouseover", (e) => {
+    const a = e.target.closest("[data-peek]");
+    if(a){ if(pimg.getAttribute("src") !== a.dataset.peek) pimg.src = a.dataset.peek; if(!peek.classList.contains("on")){ px = tx; py = ty; peek.classList.add("on"); if(!raf) raf = requestAnimationFrame(loop); } }
+    else peek.classList.remove("on");
+  });
+  window.addEventListener("hashchange", () => peek.classList.remove("on"));
   window.addEventListener("hashchange", route);
   route();
 })();
