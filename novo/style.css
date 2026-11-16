@@ -78,4 +78,5 @@ img{display:block;max-width:100%}
 @media(hover:none){.peek{display:none}}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr;gap:32px}.meta{grid-template-columns:repeat(2,1fr)}.txt{grid-template-columns:1fr}}
 @media(max-width:560px){.grid{grid-template-columns:1fr}.nav{gap:18px}.svc li{flex-direction:column;gap:4px}.svc span{text-align:left}}
+@media(max-width:700px){.hero h1{font-size:calc((100vw - 2 * var(--pad)) / 8.4);white-space:nowrap}.hero{padding-inline:var(--pad)}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none;filter:none}}
