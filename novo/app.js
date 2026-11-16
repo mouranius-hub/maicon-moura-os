@@ -80,7 +80,7 @@
     reveal();
     if(r !== "" ) window.scrollTo(0, 0);
   }
-  const soc = [["Behance", "https://www.behance.net/maiconsmoura"], ["LinkedIn", "https://www.linkedin.com/in/maiconsmoura/"], ["WhatsApp", S.phoneHref], ["E-mail", "mailto:" + S.email], ["Pedir orçamento", S.dockCtaUrl]];
+  const soc = [["Acervo", "https://acervo.maiconmoura.com/"], ["Behance", "https://www.behance.net/maiconsmoura"], ["LinkedIn", "https://www.linkedin.com/in/maiconsmoura/"], ["WhatsApp", S.phoneHref], ["E-mail", "mailto:" + S.email], ["Pedir orçamento", S.dockCtaUrl]];
   $("#foot").innerHTML = `<div class="f-in">
       <div class="f-big" id="fbig" aria-hidden="true">Maicon Moura</div>
       <div class="f-cols">
